@@ -16,15 +16,15 @@ export default class TileContainer extends Component {
     var cells = [];
 
     // Old mergers
-    // this.props.board.cells.forEach(function (column) {
-    //   column.forEach(function (cell) {
-    //     if (cell && ! cell.previousPosition && cell.mergedFrom) {
-    //       cell.mergedFrom.forEach(function(merger) {
-    //         cells.push(<Tile model={merger} merged={true} key={merger.key + 100000000} />);
-    //       });
-    //     }
-    //   });
-    // });
+    this.props.board.cells.forEach(function (column) {
+      column.forEach(function (cell) {
+        if (cell && ! cell.previousPosition && cell.mergedFrom) {
+          cell.mergedFrom.forEach(function(merger) {
+            cells.push(<Tile model={merger} merged={true} key={merger.key + 100000000} />);
+          });
+        }
+      });
+    });
 
     // New tiles
     this.props.board.cells.forEach(function (column) {

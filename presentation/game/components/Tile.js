@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import names from 'classnames';
+import {Motion, spring} from 'react-motion';
 
 export default class Tile extends Component {
   constructor(props) {
@@ -15,15 +16,14 @@ export default class Tile extends Component {
   }
 
   render() {
-    var mergers = [];
     var model = this.state.model;
-    var position = { x: model.x, y: model.y };
-    // var position = model.previousPosition || { x: model.x, y: model.y };
+    var prev = model.previousPosition || { x: model.x, y: model.y };
+    var next = { x: model.x, y: model.y };
+
 
     var classes = names(
       'tile',
       `tile-${model.value}`,
-      this.getPositionClassName(position),
       {
         'tile-super': model.value > 2048,
         'tile-merged': ! model.previousPosition && model.mergedFrom,
@@ -32,15 +32,18 @@ export default class Tile extends Component {
     );
 
     return (
-      <div>
-        <div className={classes}>
-          <div className="tile-inner">
-            {model.value}
+      <Motion defaultStyle={{x: prev.x * 121, y: prev.y * 121}} style={{x: spring(next.x * 121, [1000, 70]), y: spring(next.y * 121, [1000, 70])}}>
+        {({x, y}) => 
+          <div className={classes} style={{
+              WebkitTransform: `translate(${x}px, ${y}px)`,
+              transform: `translate(${x}px, ${y}px)`,
+            }}>
+            <div className="tile-inner">
+              {model.value}
+            </div>
           </div>
-        </div>
-
-        {mergers}
-      </div>
+        }
+      </Motion>
     );
   }
 }
