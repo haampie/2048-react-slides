@@ -29,14 +29,29 @@ module.exports = {
       exclude: /node_modules/,
       loader: "babel"
     }, {
-      test: /\.css$/,
-      loader: "style-loader!css-loader"
+      test: /\.scss$/,
+      loaders: ["style", "css", "sass"],
+      include: path.join(__dirname, 'assets')
     }, {
-      test: /\.(png|jpg)$/,
-      loader: "url-loader?limit=8192"
+      test: /\.css$/,
+      loaders: ['style', 'raw'],
+      include: __dirname
     }, {
       test: /\.svg$/,
-      loader: "url?limit=10000&mimetype=image/svg+xml"
+      loader: 'url?limit=10000&mimetype=image/svg+xml',
+      include: path.join(__dirname, 'assets')
+    }, {
+      test: /\.png$/,
+      loader: 'url-loader?mimetype=image/png',
+      include: path.join(__dirname, 'assets')
+    }, {
+      test: /\.jpg$/,
+      loader: 'url-loader?mimetype=image/jpg',
+      include: path.join(__dirname, 'assets')
+    }, {
+      test: /\.(woff|eot)$/,
+      loader: "file-loader",
+      include: path.join(__dirname, 'assets')
     }]
   }
 };
