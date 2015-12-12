@@ -9,25 +9,44 @@ export default class TwoThousandFortyEight extends Component {
   constructor(props) {
     super(props);
 
+    var manager = new GameManager(4);
+
+    console.log(props);
+    if(props.keyboard) {
+      manager.addStartTiles();
+    }
+
     this.state = {
-      manager: new GameManager(4)
+      manager: manager,
+      movenum: 0
     };
   }
 
   onKeyUp(e) {
-    switch(e.keyCode) {
-      case 87: // w
-        this.onTop();
+    if(this.props.keyboard)
+    {
+      switch(e.keyCode) {
+        case 87: // w
+          this.onTop();
         break;
-      case 65: // a
-        this.onLeft();
+        case 65: // a
+          this.onLeft();
         break;
-      case 83: // s
-        this.onBottom();
+        case 83: // s
+          this.onBottom();
         break;
-      case 68: // d
-        this.onRight();
+        case 68: // d
+          this.onRight();
         break;
+      }
+
+      return;
+    }
+
+    // Continue with D
+    if(e.keyCode == 68)
+    {
+      this.performNextMove();
     }
   }
 
@@ -39,36 +58,73 @@ export default class TwoThousandFortyEight extends Component {
     window.removeEventListener("keyup", this.onKeyUp.bind(this));
   }
 
-  onLeft() {
-    var manager = this.state.manager;
-    manager.move(3);
+  showNewPosition(manager) {
+    console.log('before');
     this.setState({
       manager: manager
-    });
+    })
+    console.log('after');
+  }
+
+  onLeft() {
+    var manager = this.state.manager;
+    if(manager.move(3))
+    {
+      manager.addRandomTile();
+      this.showNewPosition(manager);
+    }
   }
 
   onRight() {
     var manager = this.state.manager;
-    manager.move(1);
-    this.setState({
-      manager: manager
-    });
+    if(manager.move(1))
+    {
+      manager.addRandomTile();
+      this.showNewPosition(manager);
+    }
   }
 
   onTop() {
     var manager = this.state.manager;
-    manager.move(0);
-    this.setState({
-      manager: manager
-    });
+    if(manager.move(0))
+    {
+      manager.addRandomTile();
+      this.showNewPosition(manager);
+    }
   }
 
   onBottom() {
     var manager = this.state.manager;
-    manager.move(2);
-    this.setState({
-      manager: manager
-    });
+    if(manager.move(2))
+    {
+      manager.addRandomTile();
+      this.showNewPosition(manager);
+    }
+  }
+
+  performNextMove() {
+    var list = this.props.movelist;
+    var manager = this.state.manager;
+    if(this.state.movenum < list.length)
+    {
+      var move = list[this.state.movenum];
+      switch(move.type)
+      {
+        case "add":
+          manager.addDeterminedTile({
+            x: move.x,
+            y: move.y
+          }, move.value);
+        break;
+        case "move":
+          manager.move(move.direction);
+        break;
+      }
+      this.setState({
+        manager: manager,
+        movenum: this.state.movenum + 1
+      });
+    }
   }
 
   render() {

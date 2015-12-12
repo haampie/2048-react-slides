@@ -25,9 +25,6 @@ export default class GameManager {
     this.grid        = new GridModel(this.size);
     this.score       = 0;
     this.over        = false;
-
-    // Add the initial tiles
-    this.addStartTiles();
   }
 
   // Set up the initial tiles to start the game with
@@ -43,6 +40,13 @@ export default class GameManager {
       var value = Math.random() < 0.9 ? 2 : 4;
       var tile = new TileModel(this.grid.randomAvailableCell(), value);
 
+      this.grid.insertTile(tile);
+    }
+  }
+
+  addDeterminedTile(position, value) {
+    if (this.grid.cellsAvailable()) {
+      var tile = new TileModel(position, value);
       this.grid.insertTile(tile);
     }
   }
@@ -116,13 +120,7 @@ export default class GameManager {
       });
     });
 
-    if (moved) {
-      this.addRandomTile();
-
-      if (!this.movesAvailable()) {
-        this.over = true; // Game over!
-      }
-    }
+    return moved;
   }
 
   // Get the vector representing the chosen direction

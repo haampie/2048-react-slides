@@ -1,5 +1,4 @@
-/* eslint-disable */
-
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require("path");
 var webpack = require("webpack");
 
@@ -21,6 +20,9 @@ module.exports = {
       compressor: {
         warnings: false
       }
+    }),
+    new ExtractTextPlugin("style.css", {
+      allChunks: true
     })
   ],
   module: {

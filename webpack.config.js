@@ -1,10 +1,9 @@
-/* eslint-disable */
-
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval',
   entry: [
     'webpack-hot-middleware/client',
     './index'
@@ -17,10 +16,8 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      "window.jQuery": "jquery"
+    new ExtractTextPlugin("style.css", {
+      allChunks: true
     })
   ],
   module: {

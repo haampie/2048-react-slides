@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: url(open-sans-condensed/Open-Sans-Cond-Light.eot);
+  src: local('Open Sans Cond Light'), local('OpenSans-CondensedLight'), local('Open Sans Condensed'), url(open-sans-condensed/Open-Sans-Cond-Light.svg#OpenSansCondensed) format('svg'), url(open-sans-condensed/Open-Sans-Cond-Light.eot?#iefix) format('embedded-opentype');
+}
+
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Condensed Bold'), local('OpenSans-CondensedBold'), url(open-sans-condensed/Open-Sans-Condensed-Bold.woff2) format('woff2'), url(open-sans-condensed/Open-Sans-Condensed-Bold.ttf) format('truetype'), url(open-sans-condensed/Open-Sans-Condensed-Bold.woff) format('woff');
+}
+

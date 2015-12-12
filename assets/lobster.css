@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Lobster Two';
+  font-style: normal;
+  font-weight: 400;
+  src: url(lobster/Lobster-Two.eot);
+  src: local('Lobster Two'), local('LobsterTwo'), url(lobster/Lobster-Two.eot?#iefix) format('embedded-opentype'), url(lobster/Lobster-Two.svg#LobsterTwo) format('svg');
+}
+
+@font-face {
+  font-family: 'Lobster Two';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lobster Two Bold'), local('LobsterTwo-Bold'), url(lobster/Lobster-Two-Bold.woff) format('woff'), url(lobster/Lobster-Two-Bold.woff2) format('woff2'), url(lobster/Lobster-Two-Bold.ttf) format('truetype');
+}
+
