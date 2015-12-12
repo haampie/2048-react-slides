@@ -31,8 +31,11 @@ export default class Tile extends Component {
       },
     );
 
+    var one = 1000;
+    var two = 30;
+
     return (
-      <Motion defaultStyle={{x: prev.x * 121, y: prev.y * 121}} style={{x: spring(next.x * 121, [1000, 70]), y: spring(next.y * 121, [1000, 70])}}>
+      <Motion defaultStyle={{x: prev.x * 121, y: prev.y * 121}} style={{x: spring(next.x * 121, [one, two]), y: spring(next.y * 121, [one, two])}}>
         {({x, y}) => 
           <div className={classes} style={{
               WebkitTransform: `translate(${x}px, ${y}px)`,
