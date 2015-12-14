@@ -50,6 +50,10 @@ const images = {
   ab2: require("../assets/ab2.svg"),
   ab3: require("../assets/ab3.svg"),
   ab4: require("../assets/ab4.svg"),
+  tree1: require("../assets/tree1.svg"),
+  tree2: require("../assets/tree2.svg"),
+  tree3: require("../assets/tree3.svg"),
+  tree4: require("../assets/tree4.svg"),
   pvsplit: require("../assets/pvsplit.svg"),
   ybwc: require("../assets/ybwc.svg"),
 };
@@ -83,21 +87,20 @@ export default class Presentation extends React.Component {
               <Appear><ListItem>Heuristic scores</ListItem></Appear>
             </List>
           </Slide>
-          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
-            <Heading size={1} fit caps lineHeight={1}>
-              Alpha Beta Pruning
-            </Heading>
-            <List>
-              <Appear><ListItem>Reduces complexity</ListItem></Appear>
-              <LatexBlock data="\sqrt{n}" />
-            </List>
+
+          <Slide transition={["fade"]}>
+            <Image width="100%" src={images.tree1} />
           </Slide>
-          <Slide transition={["slide"]}>
-            <Heading size={2} caps lineHeight={1}>
-              Game trees
-            </Heading>
-            <Image width="100%" src={images.minimax}/>
+          <Slide transition={["fade"]} transitionDuration={0}>
+            <Image width="100%" src={images.tree2} />
           </Slide>
+          <Slide transition={["fade"]} transitionDuration={0}>
+            <Image width="100%" src={images.tree3} />
+          </Slide>
+          <Slide transition={["fade"]} transitionDuration={0}>
+            <Image width="100%" src={images.tree4} />
+          </Slide>
+
           <Slide transition={["zoom"]}>
             <TwoThousandFortyEight keyboard={true} />
           </Slide>
