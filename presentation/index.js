@@ -56,21 +56,7 @@ const images = {
 
 preloader(images);
 
-const movelist = [
-  {type: "add", x: 0, y: 2, value: 2},
-  {type: "add", x: 1, y: 2, value: 4},
-  {type: "move", direction: 2},
-  {type: "add", x: 3, y: 2, value: 4},
-  {type: "move", direction: 1},
-  {type: "add", x: 1, y: 2, value: 2},
-  {type: "move", direction: 3},
-  {type: "add", x: 0, y: 0, value: 2},
-  {type: "move", direction: 0},
-  {type: "add", x: 1, y: 2, value: 2},
-  {type: "move", direction: 1},
-  {type: "add", x: 1, y: 2, value: 2},
-  {type: "move", direction: 3},
-];
+const movelist = require("../assets/moves");
 
 export default class Presentation extends React.Component {
   render() {
