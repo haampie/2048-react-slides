@@ -46,6 +46,12 @@ const theme = createTheme({});
 
 const images = {
   minimax: require("../assets/minimax.svg"),
+  ab1: require("../assets/ab1.svg"),
+  ab2: require("../assets/ab2.svg"),
+  ab3: require("../assets/ab3.svg"),
+  ab4: require("../assets/ab4.svg"),
+  pvsplit: require("../assets/pvsplit.svg"),
+  ybwc: require("../assets/ybwc.svg"),
 };
 
 preloader(images);
@@ -71,11 +77,11 @@ export default class Presentation extends React.Component {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
-          <Slide transition={["zoom"]} bgColor="primary">
-            <Heading size={1} fit caps lineHeight={1} textColor="black">
+          <Slide transition={["zoom"]} bgColor="primary" bgImage={images.ybwc} bgDarken="0.7">
+            <Heading size={1} fit caps lineHeight={1} textColor="white">
               MINIMAX
             </Heading>
-            <Heading size={1} fit caps textColor="black">
+            <Heading size={1} fit caps textColor="white">
               By Teun &amp; Harmen
             </Heading>
           </Slide>
@@ -112,12 +118,108 @@ export default class Presentation extends React.Component {
           <Slide transition={["zoom"]}>
             <TwoThousandFortyEight keyboard={false} movelist={movelist} />
           </Slide>
-          <Slide transition={["fade"]}>
-            <Heading size={2} fit caps>
-              Pretty Cool
+          <Slide transition={["slide"]} bgColor="secondary">
+            <Heading size={1} fit caps lineHeight={1}>
+              Alpha Beta pruning
             </Heading>
-            <LatexBlock data="1 + \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots" />
-            <Latex data="1 + \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots" />
+          </Slide>
+          <Slide transition={["fade"]}>
+            <Image width="100%" src={images.ab1} />
+          </Slide>
+          <Slide transition={["fade"]} transitionDuration={0}>
+            <Image width="100%" src={images.ab2} />
+          </Slide>
+          <Slide transition={["fade"]} transitionDuration={0}>
+            <Image width="100%" src={images.ab3} />
+          </Slide>
+          <Slide transition={["fade"]} transitionDuration={0}>
+            <Image width="100%" src={images.ab4} />
+          </Slide>
+
+          <Slide transition={["zoom"]}>
+            <Heading size={1} fit caps lineHeight={1} textColor="black">
+              Parallellization
+            </Heading>
+            <List>
+              <Appear><ListItem>Two difficulties:</ListItem></Appear>
+              <Appear><ListItem><Latex data="\alpha \beta"/> pruning is sequential</ListItem></Appear>
+              <Appear><ListItem>Load balancing</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={["fade"]}>
+            <Heading caps textColor="black">PVSplit</Heading>
+            <Image width="100%" src={images.pvsplit} />
+          </Slide>
+
+          <Slide transition={["zoom"]}>
+            <Heading caps textColor="black">PVSplit</Heading>
+            <List>
+              <ListItem>17 moves per board</ListItem>
+              <ListItem>Perfectly ordered</ListItem>
+              <ListItem>Depth 12</ListItem>
+              <ListItem><Latex data="17^{12} = 582\ 622\ 237\ 229\ 761" /></ListItem>
+            </List>
+            
+            <Appear>
+            <table width="100%" style={{textAlign: "left"}}>
+              <thead>
+                <tr>
+                  <th># Cores</th>
+                  <th># Leafs discovered</th>
+                  <th>Time (s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>25 557 425</td>
+                  <td>0.574654</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>12 778 713</td>
+                  <td>0.281451</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>6 389 357</td>
+                  <td>0.142841</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>3 194 679</td>
+                  <td>0.0708847</td>
+                </tr>
+                <tr>
+                  <td>16</td>
+                  <td>1 597 340</td>
+                  <td>0.0357583</td>
+                </tr>
+              </tbody>
+            </table>
+            </Appear>
+          </Slide>
+
+          <Slide transition={["fade"]} transitionDuration={0}>
+            <Heading caps fit textColor="black">Younger Brother Wait Concept</Heading>
+            <Image width="100%" src={images.ybwc} />
+          </Slide>
+
+          <Slide transition={["fade"]} transitionDuration={0}>
+            <Heading caps fit textColor="black">Load Balancing</Heading>
+            <List>
+              <Appear><ListItem>Game trees are highly unstructured</ListItem></Appear>
+              <Appear><ListItem>Each processor <Latex data="p" /> has a work queue <Latex data="Q_p" /></ListItem></Appear>
+              <Appear><ListItem>Synchronize after <Latex data="n" /> nodes</ListItem></Appear>
+              <Appear><ListItem>Put <Latex data="|Q_p|" /> in <Latex data="P(*)" /></ListItem></Appear>
+              <Appear><ListItem>Cyclically distribute work over idle procssors</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={["zoom"]}>
+            <Heading caps fit textColor="black">Load balancing</Heading>
+            <Image width="100%" src={images.ybwc} />
           </Slide>
         </Deck>
       </Spectacle>

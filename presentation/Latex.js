@@ -4,7 +4,7 @@ import katex from "katex";
 export class Latex extends React.Component {
     render() {
         var math = katex.renderToString(this.props.data);
-        return (<p dangerouslySetInnerHTML={ {__html: math} }/>);
+        return (<span dangerouslySetInnerHTML={ {__html: math} }/>);
     }
 }
 
