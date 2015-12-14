@@ -56,7 +56,7 @@ const images = {
 
 preloader(images);
 
-const movelist = require("../assets/moves");
+const movelist = require("../assets/moves2");
 
 export default class Presentation extends React.Component {
   render() {
@@ -198,14 +198,14 @@ export default class Presentation extends React.Component {
               <Appear><ListItem>Game trees are highly unstructured</ListItem></Appear>
               <Appear><ListItem>Each processor <Latex data="p" /> has a work queue <Latex data="Q_p" /></ListItem></Appear>
               <Appear><ListItem>Synchronize after <Latex data="n" /> nodes</ListItem></Appear>
-              <Appear><ListItem>Put <Latex data="|Q_p|" /> in <Latex data="P(*)" /></ListItem></Appear>
-              <Appear><ListItem>Cyclically distribute work over idle procssors</ListItem></Appear>
+              <Appear><ListItem>Put <Latex data="done_p" /> and <Latex data="|Q_p|" /> in <Latex data="P(*)" /></ListItem></Appear>
+              <Appear><ListItem>Cyclically distribute work over idle processors</ListItem></Appear>
             </List>
           </Slide>
 
-          <Slide transition={["zoom"]}>
-            <Heading caps fit textColor="black">Load balancing</Heading>
-            <Image width="100%" src={images.ybwc} />
+          <Slide transition={["zoom"]} bgColor="secondary">
+            <Heading caps fit textColor="white">In conclusion</Heading>
+            <Appear><Heading caps fit>Thanks for your attention :)</Heading></Appear>
           </Slide>
         </Deck>
       </Spectacle>
